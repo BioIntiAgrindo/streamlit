@@ -244,16 +244,21 @@ if password == PASSWORD or password == master_key or password in password_dic.va
 
     # Streamlit에 Plotly 그래프 표시
     st.plotly_chart(fig)
-
+    
+    #문항 컨테이너 생성
+    question_container = st.empty()
+    
     # 사이드바에 문항 내용 보기 버튼 추가
-    st.sidebar.header("문항 내용 보기")
+    #st.sidebar.header("문항 내용 보기")
     if st.sidebar.button("상향 평가 문항 보기"):
-        st.write("### 상향 평가 문항 내용")
-        st.dataframe(peer_questions.set_index(peer_questions.columns[0]).rename(columns={"문항번호": "문항 번호", "평가문항id": "인니어 내용", "평가문항kr": "번역본"}), use_container_width=True)
+        with question_container:
+            st.write("### 상향 평가 문항 내용")
+            st.dataframe(peer_questions.set_index(peer_questions.columns[0]).rename(columns={"문항번호": "문항 번호", "평가문항id": "인니어 내용", "평가문항kr": "번역본"}), use_container_width=True)
 
     if st.sidebar.button("자가 평가 문항 보기"):
-        st.write("### 자가 평가 문항 내용")
-        st.dataframe(self_questions.set_index(self_questions.columns[0]).rename(columns={"문항번호": "문항 번호", "평가문항id": "인니어 내용", "평가문항kr": "번역본"}), use_container_width=True)
+        with question_container:
+            st.write("### 자가 평가 문항 내용")
+            st.dataframe(self_questions.set_index(self_questions.columns[0]).rename(columns={"문항번호": "문항 번호", "평가문항id": "인니어 내용", "평가문항kr": "번역본"}), use_container_width=True)
 
     # 각 문항별 자가평가, 상향평가, 평균, 평균과 상향평가의 차이 계산
     question_numbers = [f"Q{i}" for i in range(1, 14)]
