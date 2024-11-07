@@ -236,7 +236,7 @@ if password == PASSWORD or password == master_key or password in password_dic.va
 
     # Plotly를 사용한 반응형 그래프 생성
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=list(range(1, 14)), y=peer_evaluation, mode='markers+lines', name="Peer Evaluation (Q1-Q13)", marker=dict(color='blue'), hovertemplate='Peer Score: %{y}<extra></extra>'))
+    fig.add_trace(go.Scatter(x=list(range(1, 14)), y=peer_evaluation, mode='markers+lines', name="Upward Evaluation (Q1-Q13)", marker=dict(color='blue'), hovertemplate='Peer Score: %{y}<extra></extra>'))
     average_data = data[data['Name'] == 'Average'].iloc[0].loc['Q1':'Q13'].values
     fig.add_trace(go.Scatter(x=list(range(1, 14)), y=average_data, mode='markers+lines', name="Average (Q1-Q13)", marker=dict(color='green'), hovertemplate='Average Score: %{y}<extra></extra>'))
     fig.add_trace(go.Scatter(x=list(range(1, 14)), y=self_evaluation, mode='markers+lines', name="Self Evaluation (SQ1-SQ13)", marker=dict(color='red'), hovertemplate='Self Score: %{y}<extra></extra>'))
